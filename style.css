@@ -1,0 +1,439 @@
+
+:root {
+  --green: #42ff91;
+  --green-dim: #19b85e;
+  --bg: #030806;
+  --panel: rgba(5, 19, 12, 0.88);
+  --text: #d9f8e4;
+  --muted: #759382;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 45%, #092015 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: Consolas, "Courier New", monospace;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image:
+    linear-gradient(rgba(66, 255, 145, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66, 255, 145, 0.12) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+#matrix {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.portal {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  padding: 34px 26px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid rgba(66, 255, 145, 0.3);
+  border-radius: 18px;
+  box-shadow:
+    0 0 55px rgba(25, 184, 94, 0.08),
+    inset 0 0 35px rgba(25, 184, 94, 0.025);
+  animation: appear 0.8s ease both;
+}
+
+.portal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: var(--green);
+  box-shadow: 0 0 18px var(--green);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+.shield {
+  width: 86px;
+  height: 86px;
+  margin: 28px auto 22px;
+  display: grid;
+  place-items: center;
+  color: var(--green);
+  border: 1px solid rgba(66, 255, 145, 0.35);
+  border-radius: 50%;
+  background: rgba(66, 255, 145, 0.04);
+  box-shadow: 0 0 35px rgba(66, 255, 145, 0.08);
+}
+
+.shield svg {
+  width: 55px;
+  filter: drop-shadow(0 0 5px rgba(66, 255, 145, 0.4));
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2.4px;
+}
+
+h1 {
+  text-align: center;
+  font-size: clamp(27px, 7vw, 37px);
+  line-height: 1.2;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+h1 span {
+  color: var(--green);
+  text-shadow: 0 0 18px rgba(66, 255, 145, 0.2);
+}
+
+.description {
+  max-width: 300px;
+  margin: 17px auto 27px;
+  text-align: center;
+  color: #91ad9c;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.system-info {
+  display: grid;
+  gap: 0;
+  margin-bottom: 25px;
+  border: 1px solid rgba(66, 255, 145, 0.16);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.system-info div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 12px;
+  border-bottom: 1px solid rgba(66, 255, 145, 0.1);
+}
+
+.system-info div:last-child {
+  border-bottom: 0;
+}
+
+.system-info span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.system-info strong {
+  color: var(--green);
+  font-size: 9px;
+  text-align: right;
+  font-weight: 500;
+}
+
+#startButton {
+  width: 100%;
+  min-height: 54px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #001b0c;
+  background: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 5px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+#startButton:hover {
+  background: #8bffb7;
+  box-shadow: 0 0 28px rgba(66, 255, 145, 0.25);
+}
+
+#startButton:active {
+  transform: scale(0.98);
+}
+
+#startButton:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+.arrow {
+  font-size: 19px;
+}
+
+.footer-note {
+  margin-top: 22px;
+  text-align: center;
+  color: #466b55;
+  font-size: 8px;
+  letter-spacing: 1.4px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+    box-shadow: 0 0 3px var(--green);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 380px) {
+  .portal {
+    padding: 28px 18px;
+  }
+
+  .system-info span,
+  .system-info strong {
+    font-size: 8px;
+  }
+
+  .status {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* PREMIUM HACKER TERMINAL CHOICES */
+
+.verification-options {
+  gap: 13px;
+  margin-top: 30px;
+}
+
+.choice-button {
+  position: relative;
+  min-height: 66px;
+  padding: 16px 17px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+
+  color: #d9f8e4;
+  background:
+    linear-gradient(105deg,
+      rgba(17, 65, 38, 0.45),
+      rgba(3, 12, 7, 0.94) 75%);
+
+  border: 1px solid rgba(66, 255, 145, 0.27);
+  border-left: 3px solid #247b48;
+  border-radius: 3px;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  text-transform: uppercase;
+  text-align: left;
+
+  cursor: pointer;
+  isolation: isolate;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Subtle scan line */
+.choice-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 10%,
+    rgba(66, 255, 145, 0.11) 50%,
+    transparent 90%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.45s ease;
+}
+
+/* Numbered terminal identifier */
+.choice-button span {
+  width: 38px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+
+  color: #42ff91;
+  background: rgba(66, 255, 145, 0.06);
+  border: 1px solid rgba(66, 255, 145, 0.22);
+
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Arrow indicator */
+.choice-button::after {
+  content: "›";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  color: #42ff91;
+  font-size: 23px;
+  opacity: 0.5;
+  transform: translateY(-50%);
+  transition: opacity 0.2s ease, right 0.2s ease;
+}
+
+.choice-button:hover,
+.choice-button:focus-visible {
+  color: #ffffff;
+  background:
+    linear-gradient(105deg,
+      rgba(24, 104, 58, 0.5),
+      rgba(5, 24, 13, 0.98));
+
+  border-color: #42ff91;
+  border-left-color: #42ff91;
+  box-shadow:
+    0 0 18px rgba(66, 255, 145, 0.1),
+    inset 0 0 18px rgba(66, 255, 145, 0.035);
+
+  outline: none;
+  transform: translateX(3px);
+}
+
+.choice-button:hover::before,
+.choice-button:focus-visible::before {
+  transform: translateX(110%);
+}
+
+.choice-button:hover::after,
+.choice-button:focus-visible::after {
+  right: 10px;
+  opacity: 1;
+}
+
+.choice-button:hover span,
+.choice-button:focus-visible span {
+  color: #001b0c;
+  background: #42ff91;
+  border-color: #42ff91;
+  box-shadow: 0 0 12px rgba(66, 255, 145, 0.3);
+}
+
+/* Press feedback for touchscreens */
+.choice-button:active {
+  transform: scale(0.98);
+  background: rgba(66, 255, 145, 0.17);
+}
+
+/* Smaller phones */
+@media (max-width: 380px) {
+  .choice-button {
+    min-height: 62px;
+    padding: 13px 12px;
+    grid-template-columns: 36px minmax(0, 1fr) 12px;
+    gap: 9px;
+    font-size: 10px;
+  }
+
+  .choice-button span {
+    width: 33px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .choice-button::after {
+    right: 8px;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .choice-button,
+  .choice-button::before,
+  .choice-button::after {
+    transition: none;
+  }
+}

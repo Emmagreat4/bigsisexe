@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030806" />
+  <title>System Security Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <main class="portal" id="portal">
+    <div class="status">
+      <span class="status-dot"></span>
+      SECURE CONNECTION
+    </div>
+
+    <div class="shield">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50 8 L85 22 V48 C85 70 70 85 50 94 C30 85 15 70 15 48 V22 Z"
+          fill="none" stroke="currentColor" stroke-width="4"/>
+        <path d="M35 49 L45 59 L67 36"
+          fill="none" stroke="currentColor" stroke-width="5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow">ADVANCED SECURITY SYSTEM</p>
+
+    <h1>SYSTEM<br /><span>VERIFICATION</span></h1>
+
+    <p class="description">
+      An identity verification process is required
+      before this session can continue.
+    </p>
+
+    <div class="system-info">
+      <div>
+        <span>CONNECTION</span>
+        <strong>ENCRYPTED</strong>
+      </div>
+      <div>
+        <span>SECURITY LEVEL</span>
+        <strong>LEVEL 04</strong>
+      </div>
+      <div>
+        <span>SESSION</span>
+        <strong>AWAITING INPUT</strong>
+      </div>
+    </div>
+
+    <button id="startButton">
+      <span>INITIATE SYSTEM SCAN</span>
+      <span class="arrow">↗</span>
+    </button>
+
+    <p class="footer-note">
+      SECURE TERMINAL // SESSION READY
+    </p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
